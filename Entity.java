@@ -30,6 +30,22 @@ public abstract class Entity {
         return originalEntity;
     }
     
+    public int getRow() {
+        return this.row;
+    }
+    
+    public int getColumn() {
+        return this.column;
+    }
+    
+    public void setRow(int newRow) {
+        this.row = newRow;
+    }
+    
+    public void setColumn(int newColumn) {
+        this.column = newColumn;
+    }
+    
     @Override
     public String toString() {
         return this.symbol + "";

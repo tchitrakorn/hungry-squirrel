@@ -50,7 +50,12 @@ public class Maze {
     
     // determines if the location is a blank space based on provided row and col
     public static boolean available(int row, int col) {
-        return maze[row][col].toString().equals("*") ? false : true;
+        return maze[row][col].toString().equals(" ") ? true : false;
+    }
+    
+    // set a particular location to blank
+    public static void setBlank(int row, int col) {
+        maze[row][col] = new Wall(' ', row, col);
     }
     
     // get maze

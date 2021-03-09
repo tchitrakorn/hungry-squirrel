@@ -20,28 +20,41 @@ public class Squirrel extends Entity implements Movable {
     
     @Override
     public void create() {
-        Scanner scan = new Scanner(System.in);
-        while (true) {
-            System.out.println("Where would you like to start?");
-            System.out.print("Row: ");
-            int row = scan.nextInt();
-            System.out.print("Column: ");
-            int column = scan.nextInt();
-            if (row >= Maze.getMaxRow() || column > Maze.getMaxColumn()) {
-                System.out.println("You're outside of the maze. Try again!");
-                continue;
-            }
-            if (Maze.getMaze()[row][column].toString().equals("*")) {
-                System.out.println("You hit the wall. Try again!");
-                continue;
-            }
-            Maze.getMaze()[row][column] = this; // if the position is valid
-            break;
-        }
+        Maze.getMaze()[this.getRow()][this.getColumn()] = this;
         Maze.display();
     }
     
     @Override
     public void move(char direction) {
+        int currentRow = this.getRow();
+        int currentColumn = this.getColumn();
+        
+        if (direction == 'u' && Maze.available(currentRow - 1, currentColumn)) {
+            Maze.setBlank(this.getRow(), this.getColumn()); // set the original position to be blank
+            this.setRow(currentRow - 1); // set the new row position
+            Maze.getMaze()[this.getRow()][this.getColumn()] = this; // move the squirrel to the new position
+            Maze.display(); // rerender the maze
+            System.out.println("Moved up!");
+        } else if (direction == 'd' && Maze.available(currentRow + 1, currentColumn)) {
+            Maze.setBlank(this.getRow(), this.getColumn());
+            this.setRow(currentRow + 1);
+            Maze.getMaze()[this.getRow()][this.getColumn()] = this;
+            Maze.display();
+            System.out.println("Moved down!");
+        } else if (direction == 'l' && Maze.available(currentRow, currentColumn - 1)) {
+            Maze.setBlank(this.getRow(), this.getColumn());
+            this.setColumn(currentColumn - 1);
+            Maze.getMaze()[this.getRow()][this.getColumn()] = this;
+            Maze.display();
+            System.out.println("Moved left!");
+        } else if (direction == 'r' && Maze.available(currentRow, currentColumn + 1)) {
+            Maze.setBlank(this.getRow(), this.getColumn());
+            this.setColumn(currentColumn + 1);
+            Maze.getMaze()[this.getRow()][this.getColumn()] = this;
+            Maze.display();
+            System.out.println("Moved right!");
+        } else {
+            System.out.println("Invalid position or command!");
+        }
     }
 }
