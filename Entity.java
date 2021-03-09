@@ -10,9 +10,9 @@ package squirrelgame;
  * @author tchitrakorn
  */
 public abstract class Entity {
-    private char symbol;
-    private int row;
-    private int column;
+    protected char symbol;
+    protected int row;
+    protected int column;
     
     public Entity(char symbol,int row, int column) {
         this.symbol = symbol;

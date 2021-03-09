@@ -9,6 +9,11 @@ package squirrelgame;
  *
  * @author tchitrakorn
  */
-public class Almond {
-    
+public class Almond extends Nut {
+    public Almond (char symbol, int row, int col) {
+        super(symbol, row, col);
+        this.symbol = 'A'; // may not be necessary
+        this.nutritionPoints = 5;
+        this.name = "Almond";
+    }
 }
