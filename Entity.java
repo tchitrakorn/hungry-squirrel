@@ -30,6 +30,10 @@ public abstract class Entity {
         return originalEntity;
     }
     
+    public char getSymbol() {
+        return this.symbol;
+    }
+    
     public int getRow() {
         return this.row;
     }

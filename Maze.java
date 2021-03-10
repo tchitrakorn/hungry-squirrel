@@ -51,7 +51,7 @@ public class Maze {
     
     // determines if the location is a blank space based on provided row and col
     public static boolean available(int row, int col) {
-        return maze[row][col].toString().equals(" ") ? true : false;
+        return maze[row][col].toString().equals("*") ? false : true;
     }
     
     // set a particular location to blank
@@ -59,7 +59,7 @@ public class Maze {
         maze[row][col] = new Wall(' ', row, col);
     }
     
-    // get a random available position
+    // get a random available position in the maze
     public static int[] getAvailablePosition() {
         while (true) {
             int randomRow = ThreadLocalRandom.current().nextInt(0, Maze.getMaxRow());
