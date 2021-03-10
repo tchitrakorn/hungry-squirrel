@@ -23,10 +23,7 @@ public abstract class Entity {
     public abstract void create();
     
     public Entity put(int newRow, int newCol) {
-        // put an entity at a location in the maze
-        // returns an object that was replaced in the maze
         Entity originalEntity = Maze.getMaze()[newRow][newCol];
-        // Maze.getMaze()[newRow][newCol] = 
         return originalEntity;
     }
     
