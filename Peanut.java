@@ -12,7 +12,6 @@ package squirrelgame;
 public class Peanut extends Nut {
     public Peanut (char symbol, int row, int col) {
         super(symbol, row, col);
-        this.symbol = 'P'; // may not be necessary
         this.nutritionPoints = 10;
         this.name = "Peanut";
     }

@@ -8,6 +8,7 @@ package squirrelgame;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -56,6 +57,18 @@ public class Maze {
     // set a particular location to blank
     public static void setBlank(int row, int col) {
         maze[row][col] = new Wall(' ', row, col);
+    }
+    
+    // get a random available position
+    public static int[] getAvailablePosition() {
+        while (true) {
+            int randomRow = ThreadLocalRandom.current().nextInt(0, Maze.getMaxRow());
+            int randomColumn = ThreadLocalRandom.current().nextInt(0, Maze.getMaxColumn());
+            if (Maze.available(randomRow, randomColumn)) {
+                int[] validPosition = new int[]{randomRow, randomColumn};
+                return validPosition;
+            }
+        }
     }
     
     // get maze

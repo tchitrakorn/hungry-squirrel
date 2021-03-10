@@ -21,7 +21,6 @@ public class Squirrel extends Entity implements Movable {
     @Override
     public void create() {
         Maze.getMaze()[this.getRow()][this.getColumn()] = this;
-        Maze.display();
     }
     
     @Override

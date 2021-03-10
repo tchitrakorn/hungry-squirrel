@@ -18,8 +18,12 @@ public abstract class Nut extends Entity {
         super(symbol, row, col);
     }
     
+    public static int getTotalNuts() {
+        return totalNuts;
+    }
+    
     @Override
     public void create() {
-        // randomly generate the location of the nut
+        Maze.getMaze()[this.getRow()][this.getColumn()] = this;
     }
 }
