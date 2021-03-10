@@ -84,6 +84,11 @@ public class HungrySquirrelGame {
                 break;
             }
             squirrel.move(command.charAt(0));
+            if (squirrel.checkVictory()) { // if won!
+                System.out.println("You successfully collected all the nuts!");
+                System.out.println("Thank you for playing this game!");
+                break;
+            }
         }
     }
     

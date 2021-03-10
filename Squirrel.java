@@ -18,6 +18,10 @@ public class Squirrel extends Entity implements Movable {
         super(symbol, row, column);
     }
     
+    public boolean checkVictory() {
+        return this.totalNutsEaten == Nut.getTotalNuts();
+    }
+    
     public String updatePoints(Entity replacedEntity) {
         String updates = "";
         if (replacedEntity.getSymbol() == 'P') {
