@@ -9,10 +9,10 @@ package squirrelgame;
  *
  * @author tchitrakorn
  */
-public class Almond extends Nut {
-    public Almond (char symbol, int row, int col) {
+public class PoisonousCashew extends Nut {
+    public PoisonousCashew (char symbol, int row, int col) {
         super(symbol, row, col);
-        this.nutritionPoints = 5;
-        this.name = "Almond";
+        this.nutritionPoints = -15;
+        this.name = "Cashew";
     }
 }

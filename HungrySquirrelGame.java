@@ -16,19 +16,22 @@ public class HungrySquirrelGame {
     public static void main(String[] args) {
         // instructions
         System.out.println("Welcome to the Hungry Squirrel Game!");
-        System.out.println("In this game, you're a hungry squirrel (@) who wants to collect all the nuts.");
+        System.out.println("In this game, you're a hungry squirrel (@) who wants to collect all the peanuts and almonds.");
         System.out.println("Peanuts (P) are worth 10 points, while Almonds (A) are worth 5 points.");
-        System.out.println("Explore the maze and collect all the nuts to win the game!");
+        System.out.println("Beware! Cashews (C) are poisonous (minus 15 points). Eating too many of them will make you pass out!");
+        System.out.println("Explore the maze and collect all the (good) nuts to win the game!");
         
         // create a maze
         Maze maze = new Maze();
         maze.create("Maze.txt");
+        maze.display();
         
         // ask for user's input for the starting position of the squirrel
         int row, column;
         while (true) {
             Scanner scan = new Scanner(System.in);
             System.out.println("Where would you like to start?");
+            System.out.println("<You will be prompted to enter the row and column position separately>");
             System.out.println("Row positions (0 - 49) | Column positions (0, 19)");
             System.out.print("Row: ");
             row = scan.nextInt();
@@ -71,6 +74,13 @@ public class HungrySquirrelGame {
             }
         }
         
+        // randomly place 5 poisonous cashews in the maze
+        for (int i = 0; i < Nut.getTotalNuts(); i++) {
+            int[] randPosition = Maze.getAvailablePosition();
+            PoisonousCashew cashew = new PoisonousCashew('C', randPosition[0], randPosition[1]);
+            cashew.create();
+        }
+        
         // display all the entities in the maze (may need refactoring)
         Maze.display();
         
@@ -83,10 +93,23 @@ public class HungrySquirrelGame {
             if (command.equalsIgnoreCase("quit")) {
                 break;
             }
+            if(command.isEmpty()) {
+                System.out.println("Nothing was entered. Please try again!");
+                continue;
+            }
+            if(command.length() != 1) {
+                System.out.println("Your command must be exactly 1 character. Please try again!");
+                continue;
+            }
             squirrel.move(command.charAt(0));
             if (squirrel.checkVictory()) { // if won!
                 System.out.println("You successfully collected all the nuts!");
                 System.out.println("Thank you for playing this game!");
+                break;
+            }
+            if (squirrel.checkDefeat()) { // if lost (have less than 0 point)
+                System.out.println("You ate too many poisonous cashews and passed out!");
+                System.out.println("Please try again!");
                 break;
             }
         }

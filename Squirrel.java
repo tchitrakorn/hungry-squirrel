@@ -18,6 +18,10 @@ public class Squirrel extends Entity implements Movable {
         super(symbol, row, column);
     }
     
+    public boolean checkDefeat() {
+        return this.pointCollect < 0;
+    }
+    
     public boolean checkVictory() {
         return this.totalNutsEaten == Nut.getTotalNuts();
     }
@@ -36,6 +40,10 @@ public class Squirrel extends Entity implements Movable {
             updates += "You found an almond and earned 5 points!\n";
             updates += "Your current point is: " + this.pointCollect + "\n";
             updates += "You have found " + this.totalNutsEaten + " nut(s) out of 5 nuts!\n";
+        } else if (replacedEntity.getSymbol() == 'C') {
+            this.pointCollect -= 15;
+            updates += "You found a poisonous cashew and lost 15 points!\n";
+            updates += "Your current point is: " + this.pointCollect + "\n";
         }
         return updates;
     }
