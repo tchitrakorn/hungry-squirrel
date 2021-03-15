@@ -60,6 +60,13 @@ public class HungrySquirrelGame {
         Squirrel squirrel = new Squirrel('@', row, column);
         squirrel.create();
         
+        // randomly place 5 poisonous cashews in the maze
+        for (int i = 0; i < Nut.getTotalNuts(); i++) {
+            int[] randPosition = Maze.getAvailablePosition();
+            PoisonousCashew cashew = new PoisonousCashew('C', randPosition[0], randPosition[1]);
+            cashew.create();
+        }
+        
         // instantiate an array of Nut objects and determine and create the type of nut
         Random random = new Random();
         for (int i = 0; i < Nut.getTotalNuts(); i++) {
@@ -72,13 +79,6 @@ public class HungrySquirrelGame {
                 Almond almond = new Almond('A', randPosition[0], randPosition[1]);
                 almond.create();
             }
-        }
-        
-        // randomly place 5 poisonous cashews in the maze
-        for (int i = 0; i < Nut.getTotalNuts(); i++) {
-            int[] randPosition = Maze.getAvailablePosition();
-            PoisonousCashew cashew = new PoisonousCashew('C', randPosition[0], randPosition[1]);
-            cashew.create();
         }
         
         // display all the entities in the maze (may need refactoring)
